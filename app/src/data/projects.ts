@@ -1,0 +1,46 @@
+import { Project } from '@/types'
+
+export const projects: Project[] = [
+  {
+    id: 'travelling-postman',
+    title: 'Travelling Postman',
+    description: 'Dynamic Mail Transmission System for India Post using Next.js and PostgreSQL. Optimized multi-modal routing with A* algorithm and real-time data analysis, reducing delivery time by 30%. Integrated self-learning algorithms to assess node safety using weather, news, and social media insights.',
+    techStack: ['Next.js', 'React.js', 'Python', 'PostgreSQL', 'Machine Learning'],
+    image: '/images/travelling-postman.jpg',
+    demoUrl: '#',
+    codeUrl: '#',
+    featured: true,
+    span: 'col-span-2',
+  },
+  {
+    id: 'snapgram',
+    title: 'Snapgram',
+    description: 'Social media application with ReactJS and TypeScript, ensuring scalability. Implemented authentication, database management, and storage using Appwrite, boosting security by 40%.',
+    techStack: ['React.js', 'TypeScript', 'Appwrite', 'Tailwind CSS'],
+    image: '/images/snapgram.jpg',
+    demoUrl: '#',
+    codeUrl: '#',
+    span: 'col-span-1',
+  },
+  {
+    id: 'ai-music-generator',
+    title: 'AI Music Generator',
+    description: 'AI-powered music generation from text prompts using Python and TensorFlow.',
+    techStack: ['Python', 'TensorFlow', 'Hugging Face'],
+    image: '/images/ai-music.jpg',
+    demoUrl: '#',
+    codeUrl: '#',
+    span: 'col-span-1',
+  },
+  {
+    id: 'realtime-chat',
+    title: 'Real-time Chat System',
+    description: 'Collaborative workspace with real-time editing, authentication, and file uploads. Engineered with Socket.io and Framer Motion for seamless interactions.',
+    techStack: ['Socket.io', 'Node.js', 'MongoDB', 'Framer Motion', 'Tailwind CSS'],
+    image: '/images/chat-system.jpg',
+    demoUrl: '#',
+    codeUrl: '#',
+    featured: true,
+    span: 'col-span-2',
+  },
+]

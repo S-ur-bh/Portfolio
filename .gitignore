@@ -1,0 +1,32 @@
+# Claude Flow and MCP
+.claude
+.claude-flow
+.mcp.json
+CLAUDE.md
+
+# Dependencies
+node_modules
+package-lock.json
+yarn.lock
+
+# Portfolio folder
+portfolio
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+app/dist
+.swarm
