@@ -1,4 +1,5 @@
-import { Github, Linkedin } from 'lucide-react'
+import { Github, Linkedin } from 'lucide-react' // Keep imports for defining 'socials' array
+import { SocialLinks } from '@/components/ui/social-links' // Import SocialLinks
 import { cn } from '@/lib/utils'
 
 const socials = [
@@ -24,25 +25,7 @@ export function Footer() {
           </p>
 
           {/* Social Links */}
-          <div className="flex items-center gap-4">
-            {socials.map((social) => (
-              <a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(
-                  'p-2 rounded-lg',
-                  'text-muted hover:text-accent',
-                  'hover:bg-card',
-                  'transition-all duration-300'
-                )}
-                title={social.name}
-              >
-                <social.icon size={20} />
-              </a>
-            ))}
-          </div>
+          <SocialLinks links={socials} iconSize={20} linkClassName="p-2 rounded-lg hover:bg-card" />
 
           {/* Divider */}
           <div className="w-full max-w-xs h-px bg-border" />

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { MapPin, ChevronDown, Github, Linkedin, Code2 } from 'lucide-react'
 import { Typewriter } from '@/components/ui/typewriter'
+import { SocialLinks } from '@/components/ui/social-links' // Import SocialLinks
 import { cn } from '@/lib/utils'
 
 const socials = [
@@ -150,22 +151,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="flex items-center justify-center gap-6"
         >
-          {socials.map((social) => (
-            <a
-              key={social.name}
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cn(
-                'text-muted hover:text-accent',
-                'transition-all duration-300',
-                'hover:scale-110'
-              )}
-              title={social.name}
-            >
-              <social.icon size={24} />
-            </a>
-          ))}
+          <SocialLinks links={socials} iconSize={24} />
         </motion.div>
       </div>
 

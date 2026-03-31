@@ -1,38 +1,17 @@
-import { Github, Linkedin, Code2, ExternalLink } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import type { SocialLink } from '@/types'
 
 interface SocialLinksProps {
+  links: SocialLink[]
   className?: string
+  linkClassName?: string // Added linkClassName prop
   iconSize?: number
 }
 
-const socials = [
-  {
-    name: 'GitHub',
-    url: 'https://github.com',
-    icon: Github,
-  },
-  {
-    name: 'LinkedIn',
-    url: 'https://linkedin.com',
-    icon: Linkedin,
-  },
-  {
-    name: 'LeetCode',
-    url: 'https://leetcode.com',
-    icon: Code2,
-  },
-  {
-    name: 'CodeChef',
-    url: 'https://codechef.com',
-    icon: ExternalLink,
-  },
-]
-
-export function SocialLinks({ className, iconSize = 20 }: SocialLinksProps) {
+export function SocialLinks({ links, className, linkClassName, iconSize = 20 }: SocialLinksProps) {
   return (
     <div className={cn('flex items-center gap-4', className)}>
-      {socials.map((social) => (
+      {links.map((social) => (
         <a
           key={social.name}
           href={social.url}
@@ -41,7 +20,8 @@ export function SocialLinks({ className, iconSize = 20 }: SocialLinksProps) {
           className={cn(
             'text-muted hover:text-accent',
             'transition-all duration-300',
-            'hover:scale-110'
+            'hover:scale-110',
+            linkClassName // Applied linkClassName here
           )}
           title={social.name}
         >

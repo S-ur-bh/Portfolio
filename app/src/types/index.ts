@@ -1,3 +1,5 @@
+import type { ElementType } from 'react'
+
 export interface Project {
   id: string
   title: string
@@ -29,5 +31,5 @@ export interface Skill {
 export interface SocialLink {
   name: string
   url: string
-  icon: string
+  icon: ElementType
 }

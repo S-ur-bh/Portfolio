@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Code2 } from 'lucide-react'
 import { ScrollReveal } from '@/components/ui/scroll-reveal'
+import { SocialLinks } from '@/components/ui/social-links' // Import SocialLinks
 import { cn } from '@/lib/utils'
 
 const contactInfo = [
@@ -110,27 +111,7 @@ export function Contact() {
                 <h3 className="text-xl font-semibold text-foreground mb-4 font-mono">
                   Follow Me
                 </h3>
-                <div className="flex items-center gap-4">
-                  {socials.map((social) => (
-                    <a
-                      key={social.name}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={cn(
-                        'w-12 h-12 rounded-lg',
-                        'bg-card border border-border',
-                        'flex items-center justify-center',
-                        'text-muted hover:text-accent hover:border-accent/50',
-                        'transition-all duration-300',
-                        'hover:scale-110'
-                      )}
-                      title={social.name}
-                    >
-                      <social.icon size={20} />
-                    </a>
-                  ))}
-                </div>
+                <SocialLinks links={socials} iconSize={20} linkClassName="w-12 h-12 rounded-lg bg-card border border-border flex items-center justify-center hover:border-accent/50" />
               </div>
             </div>
           </ScrollReveal>

@@ -82,7 +82,9 @@ export function Navbar() {
             {/* Resume Button */}
             <div className="hidden md:block">
               <a
-                href="#"
+                href="resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={cn(
                   'px-4 py-2 text-sm font-mono',
                   'border border-accent text-accent rounded-lg',
@@ -135,7 +137,9 @@ export function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                href="#"
+                href="resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={cn(
                   'mt-4 px-6 py-3 text-lg font-mono',
                   'border border-accent text-accent rounded-lg',
