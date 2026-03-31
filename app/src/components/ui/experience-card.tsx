@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion'
-import { Briefcase, MapPin, Calendar } from 'lucide-react'
+import { Briefcase, MapPin, Calendar, FileText } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { Experience } from '@/types'
+import { ElementType } from 'react'
 
 interface ExperienceCardProps {
   experience: Experience
@@ -9,6 +10,8 @@ interface ExperienceCardProps {
 }
 
 export function ExperienceCard({ experience, index }: ExperienceCardProps) {
+  const LogoIcon = experience.logo as ElementType | undefined
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 30 }}
@@ -38,9 +41,19 @@ export function ExperienceCard({ experience, index }: ExperienceCardProps) {
         'group-hover:border-accent/50',
         'transition-all duration-300'
       )}>
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
-          <div>
+        {/* Header with Logo */}
+        <div className="flex items-start gap-4 mb-4">
+          {LogoIcon && (
+            <div className={cn(
+              'w-14 h-14 rounded-lg flex items-center justify-center flex-shrink-0',
+              'bg-card-hover border border-border',
+              'group-hover:border-accent/50',
+              'transition-all duration-300'
+            )}>
+              <LogoIcon className="w-8 h-8 text-accent" />
+            </div>
+          )}
+          <div className="flex-1">
             <h3 className="text-xl font-semibold text-foreground font-mono">
               {experience.role}
             </h3>
@@ -49,18 +62,36 @@ export function ExperienceCard({ experience, index }: ExperienceCardProps) {
               <span className="font-medium">{experience.company}</span>
             </div>
           </div>
-          <div className="flex flex-col items-start sm:items-end gap-1 text-sm text-muted">
-            <div className="flex items-center gap-1">
-              <Calendar className="w-4 h-4" />
-              <span>{experience.duration}</span>
-            </div>
-            {experience.location && (
-              <div className="flex items-center gap-1">
-                <MapPin className="w-4 h-4" />
-                <span>{experience.location}</span>
-              </div>
-            )}
+        </div>
+
+        {/* Duration & Location */}
+        <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-muted">
+          <div className="flex items-center gap-1">
+            <Calendar className="w-4 h-4" />
+            <span>{experience.duration}</span>
           </div>
+          {experience.location && (
+            <div className="flex items-center gap-1">
+              <MapPin className="w-4 h-4" />
+              <span>{experience.location}</span>
+            </div>
+          )}
+          {experience.completionLetterUrl && (
+            <a
+              href={experience.completionLetterUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                'ml-auto flex items-center gap-1 px-3 py-1 rounded-full',
+                'bg-accent/10 border border-accent/30',
+                'text-accent hover:bg-accent/20',
+                'transition-all duration-300 text-sm'
+              )}
+            >
+              <FileText className="w-3 h-3" />
+              <span>View Completion Letter</span>
+            </a>
+          )}
         </div>
 
         {/* Description */}

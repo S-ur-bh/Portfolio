@@ -1,4 +1,5 @@
 import { Experience } from '@/types'
+import { FaAmazon, FaBuilding } from 'react-icons/fa'
 
 export const experiences: Experience[] = [
   {
@@ -14,6 +15,8 @@ export const experiences: Experience[] = [
       'Resolved DOGMA compliance risks for 6+ pipelines by integrating AWS CDK monitors and automated rollback mechanisms, achieving "Full CD" status for the ALUI pipeline.',
     ],
     techStack: ['React.js', 'TypeScript', 'Java', 'Spring Boot', 'AWS CloudWatch', 'AWS CDK', 'Derby DB'],
+    logo: FaAmazon,
+    completionLetterUrl: '/Portfolio/Amazon Intern Completion Letter.pdf',
   },
   {
     id: 'bizzplus',
@@ -28,5 +31,7 @@ export const experiences: Experience[] = [
       'Engineered a real-time chat system with Socket.io & Framer Motion for seamless interactions, using MongoDB for history and Tailwind CSS for responsiveness, boosting engagement by 30%.',
     ],
     techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'MongoDB', 'Socket.io', 'Node.js'],
+    logo: FaBuilding,
+    completionLetterUrl: '/Portfolio/Bizz+ Labs Experience Letter.pdf',
   },
 ]

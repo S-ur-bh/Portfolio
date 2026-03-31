@@ -20,6 +20,8 @@ export interface Experience {
   location?: string
   description: string[]
   techStack?: string[]
+  logo?: ElementType
+  completionLetterUrl?: string
 }
 
 export interface Skill {
