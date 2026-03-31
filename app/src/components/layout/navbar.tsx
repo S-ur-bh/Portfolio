@@ -53,7 +53,7 @@ export function Navbar() {
               }}
               className="text-xl font-bold font-mono text-foreground hover:text-accent transition-colors"
             >
-              SV
+              Saurabh Verma
             </a>
 
             {/* Desktop Navigation */}

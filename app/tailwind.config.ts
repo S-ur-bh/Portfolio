@@ -33,11 +33,16 @@ const config: Config = {
         'bounce-slow': 'bounce 2s infinite',
         'pulse-slow': 'pulse 3s infinite',
         'glow': 'glow 2s ease-in-out infinite alternate',
+        'infinite-scroll': 'infinite-scroll var(--duration) linear infinite',
       },
       keyframes: {
         glow: {
           '0%': { boxShadow: '0 0 5px rgba(0, 255, 157, 0.3)' },
           '100%': { boxShadow: '0 0 20px rgba(0, 255, 157, 0.6)' },
+        },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-100%)' },
         },
       },
     },

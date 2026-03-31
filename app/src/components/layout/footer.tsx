@@ -1,6 +1,5 @@
 import { Github, Linkedin } from 'lucide-react' // Keep imports for defining 'socials' array
-import { SocialLinks } from '@/components/ui/social-links' // Import SocialLinks
-import { cn } from '@/lib/utils'
+import { SocialLinks } from '@/components/ui/social-links'
 
 const socials = [
   { name: 'GitHub', url: 'https://github.com', icon: Github },

@@ -61,6 +61,15 @@
   .glow-accent-strong {
     box-shadow: 0 0 40px rgba(0, 255, 157, 0.5);
   }
+
+  .mask-gradient {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 128px, black calc(100% - 128px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 128px, black calc(100% - 128px), transparent 100%);
+  }
+
+  .animate-marquee {
+    animation: marquee var(--duration, 40s) linear infinite;
+  }
 }
 
 /* Custom scrollbar */
@@ -96,5 +105,15 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Marquee Animations */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
   }
 }

@@ -25,7 +25,7 @@ export interface Experience {
 export interface Skill {
   name: string
   category: 'languages' | 'frontend' | 'backend' | 'database' | 'tools' | 'other'
-  icon?: string
+  icon?: ElementType
 }
 
 export interface SocialLink {

@@ -1,9 +1,14 @@
 import { ScrollReveal } from '@/components/ui/scroll-reveal'
-import { SkillCard } from '@/components/ui/skill-card'
-import { skills, skillCategories } from '@/data/skills'
-import { cn } from '@/lib/utils'
+import { SkillMarquee } from '@/components/ui/skill-marquee'
+import { skills } from '@/data/skills'
 
 export function Skills() {
+  // Split skills into three parts for three rows
+  const skillsPerMarquee = Math.ceil(skills.length / 3);
+  const skillsRow1 = skills.slice(0, skillsPerMarquee);
+  const skillsRow2 = skills.slice(skillsPerMarquee, skillsPerMarquee * 2);
+  const skillsRow3 = skills.slice(skillsPerMarquee * 2);
+
   return (
     <section id="skills" className="py-20 md:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,40 +20,11 @@ export function Skills() {
           <div className="w-20 h-1 bg-accent mx-auto rounded-full" />
         </ScrollReveal>
 
-        {/* Skills by Category */}
-        <div className="space-y-12">
-          {skillCategories.map((category, categoryIndex) => {
-            const categorySkills = skills.filter((s) => s.category === category.id)
-            if (categorySkills.length === 0) return null
-
-            return (
-              <ScrollReveal key={category.id} delay={categoryIndex * 0.1}>
-                <div>
-                  {/* Category Header */}
-                  <h3 className={cn(
-                    'text-lg font-semibold mb-4 font-mono',
-                    'bg-gradient-to-r',
-                    category.color,
-                    'bg-clip-text text-transparent'
-                  )}>
-                    {category.label}
-                  </h3>
-
-                  {/* Skills Grid */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                    {categorySkills.map((skill, index) => (
-                      <SkillCard
-                        key={skill.name}
-                        name={skill.name}
-                        category={skill.category}
-                        index={index}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </ScrollReveal>
-            )
-          })}
+        {/* Skills Marquee */}
+        <div className="space-y-8">
+          <SkillMarquee skills={skillsRow1} speed={40} />
+          <SkillMarquee skills={skillsRow2} direction="right" speed={50} />
+          <SkillMarquee skills={skillsRow3} speed={45} />
         </div>
       </div>
     </section>
