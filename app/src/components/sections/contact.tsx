@@ -1,9 +1,17 @@
-import { useState } from 'react'
+import { useState, useRef, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Code2 } from 'lucide-react'
+import emailjs from '@emailjs/browser'
 import { ScrollReveal } from '@/components/ui/scroll-reveal'
-import { SocialLinks } from '@/components/ui/social-links' // Import SocialLinks
+import { SocialLinks } from '@/components/ui/social-links'
 import { cn } from '@/lib/utils'
+
+// EmailJS configuration
+const EMAILJS_CONFIG = {
+  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+}
 
 const contactInfo = [
   {
@@ -33,6 +41,7 @@ const socials = [
 ]
 
 export function Contact() {
+  const formRef = useRef<HTMLFormElement>(null)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -41,20 +50,48 @@ export function Contact() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [_error, setError] = useState('')
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError('')
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    // Format email body with sender details
+    const formattedMessage = `Name: ${formData.name}
+Email: ${formData.email}
+Purpose: ${formData.subject}
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    setFormData({ name: '', email: '', subject: 'general', message: '' })
+Message:
+${formData.message}`
 
-    // Reset success message after 5 seconds
-    setTimeout(() => setIsSubmitted(false), 5000)
+    try {
+      await emailjs.send(
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formattedMessage,
+        },
+        EMAILJS_CONFIG.publicKey
+      )
+
+      setIsSubmitted(true)
+      setFormData({ name: '', email: '', subject: 'general', message: '' })
+      if (formRef.current) {
+        formRef.current.reset()
+      }
+
+      // Reset success message after 5 seconds
+      setTimeout(() => setIsSubmitted(false), 5000)
+    } catch (err) {
+      console.error('Failed to send email:', err)
+      setError('Failed to send message. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -118,12 +155,13 @@ export function Contact() {
 
           {/* Contact Form */}
           <ScrollReveal direction="right">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm text-muted mb-2">Name</label>
                   <input
                     type="text"
+                    name="from_name"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -141,6 +179,7 @@ export function Contact() {
                   <label className="block text-sm text-muted mb-2">Email</label>
                   <input
                     type="email"
+                    name="from_email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -159,6 +198,7 @@ export function Contact() {
               <div>
                 <label className="block text-sm text-muted mb-2">Subject</label>
                 <select
+                  name="subject"
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   className={cn(
@@ -179,6 +219,7 @@ export function Contact() {
               <div>
                 <label className="block text-sm text-muted mb-2">Message</label>
                 <textarea
+                  name="message"
                   required
                   rows={5}
                   value={formData.message}
@@ -194,6 +235,7 @@ export function Contact() {
                   placeholder="Your message..."
                 />
               </div>
+
 
               <button
                 type="submit"
@@ -234,6 +276,21 @@ export function Contact() {
                   )}
                 >
                   Thank you! Your message has been sent successfully.
+                </motion.div>
+              )}
+
+              {/* Error Message */}
+              {_error && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={cn(
+                    'p-4 rounded-lg',
+                    'bg-red-500/10 border border-red-500/50',
+                    'text-red-500 text-center'
+                  )}
+                >
+                  {_error}
                 </motion.div>
               )}
             </form>

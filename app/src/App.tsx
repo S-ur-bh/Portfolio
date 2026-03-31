@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@/contexts/theme-context'
 import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
 import { Hero } from '@/components/sections/hero'
@@ -9,18 +10,20 @@ import { Terminal } from '@/components/ui/terminal'
 
 function App() {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <main>
-        <Hero />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Contact />
-      </main>
-      <Footer />
-      <Terminal />
-    </div>
+    <ThemeProvider>
+      <div className="min-h-screen bg-background transition-colors duration-300">
+        <Navbar />
+        <main>
+          <Hero />
+          <Skills />
+          <Experience />
+          <Projects />
+          <Contact />
+        </main>
+        <Footer />
+        <Terminal />
+      </div>
+    </ThemeProvider>
   )
 }
 

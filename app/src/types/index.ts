@@ -5,7 +5,6 @@ export interface Project {
   title: string
   description: string
   techStack: string[]
-  image?: string
   demoUrl?: string
   codeUrl?: string
   featured?: boolean

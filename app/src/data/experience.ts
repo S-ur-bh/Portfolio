@@ -7,7 +7,7 @@ export const experiences: Experience[] = [
     company: 'Amazon',
     role: 'Software Development Engineer Intern',
     duration: 'July 2025 – December 2025',
-    location: 'India',
+    location: 'Gurugram, India',
     description: [
       'Developed GEN-5 Residential Locker workflows (Ingress, Pickup, Drop-off) using React.js and TypeScript; implemented 30+ functional views, global state management via hooks, and exception handling logic.',
       'Enhanced Java-based resident search in ALES (LockerEdgeService) by implementing substring, case-insensitive, and diacritic-insensitive matching using SQL normalization techniques.',
@@ -22,8 +22,8 @@ export const experiences: Experience[] = [
     id: 'bizzplus',
     company: 'Bizz+ Labs, Qunova Tech',
     role: 'Full Stack Developer Intern',
-    duration: '2024',
-    location: 'Remote',
+    duration: 'Feb 2025 - July 2025',
+    location: 'Pune, India',
     description: [
       'Built a real-time analytics dashboard with Next.js, React, & Aceternity UI, reducing manual reporting by 35% using MongoDB aggregation.',
       'Designed secure profiles for distributors/manufacturers using TypeScript & PostgreSQL, ensuring data integrity.',

@@ -5,24 +5,25 @@ const config: Config = {
     './index.html',
     './src/**/*.{js,ts,jsx,tsx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        background: '#0a0a0a',
-        foreground: '#ffffff',
+        background: 'rgb(var(--background) / <alpha-value>)',
+        foreground: 'rgb(var(--foreground) / <alpha-value>)',
         card: {
-          DEFAULT: '#141414',
-          hover: '#1a1a1a',
+          DEFAULT: 'rgb(var(--card) / <alpha-value>)',
+          hover: 'rgb(var(--card-hover) / <alpha-value>)',
         },
-        border: '#2a2a2a',
+        border: 'rgb(var(--border) / <alpha-value>)',
         accent: {
-          DEFAULT: '#00ff9d',
-          secondary: '#00d4aa',
-          glow: 'rgba(0, 255, 157, 0.3)',
+          DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
+          secondary: 'rgb(var(--accent-secondary) / <alpha-value>)',
+          glow: 'rgba(var(--accent) / 0.3)',
         },
         muted: {
-          DEFAULT: '#a0a0a0',
-          foreground: '#6a6a6a',
+          DEFAULT: 'rgb(var(--muted) / <alpha-value>)',
+          foreground: 'rgb(var(--muted-foreground) / <alpha-value>)',
         },
       },
       fontFamily: {
@@ -36,10 +37,6 @@ const config: Config = {
         'infinite-scroll': 'infinite-scroll var(--duration) linear infinite',
       },
       keyframes: {
-        glow: {
-          '0%': { boxShadow: '0 0 5px rgba(0, 255, 157, 0.3)' },
-          '100%': { boxShadow: '0 0 20px rgba(0, 255, 157, 0.6)' },
-        },
         marquee: {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(-100%)' },
